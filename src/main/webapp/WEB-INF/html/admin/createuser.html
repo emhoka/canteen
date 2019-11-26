@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head lang="en" th:replace="head :: head"> </head>
+    <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+
+        <header th:replace ="topnavbar::topnavbar"></header>
+        <section th:replace ="adminbottomnavbar::adminbottomnavbar"></section>
+
+        <section id="home" class="slider" data-stellar-background-ratio="0.5">
+            <div class="row">
+                <div id="msg"></div>
+                <div class="container">
+                    <div class="row">                   
+                                    <label style="font-size: 2.2rem;">Add User</label>
+                            
+                                   <form th:action="@{/admin/createuserform}" th:object="${users}" method="post"> 
+                                        
+                                        
+                                        
+                                         <div class="row form-group">
+                                             <div class="col-lg-6 col-md-6 col-sm-6" align="right"><h6>Name</h6></div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                          <input type="text" class="form-control" th:field="*{name}"  />
+                                                <input type="hidden" class="form-control" th:field="*{id}"  />
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-lg-6 col-md-6 col-sm-6" align="right"><h6>Surname</h6> </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                           <input type="text" class="form-control" th:field="*{surname}"  />
+                                            </div>
+                                        </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-lg-6 col-md-6 col-sm-6" align="right"><h6>Username</h6></div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                         <input type="text" class="form-control" th:field="*{username}"  />
+                                            </div>
+                                        </div>    
+                                         <div class="row form-group">
+                                             <div class="col-lg-6 col-md-6 col-sm-6" align="right"><h6> Phone</h6></div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <input type="text" class="form-control" th:field="*{phone}"  />
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-lg-6 col-md-6 col-sm-6" align="right"><h6>Role</h6> </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                               <select  data-live-search="true" class="form-control"   data-style="btn-default" th:field="${users.role}" required = "required">
+                                                    <option value="">- - - - select - - - -</option> 
+                                                    <option th:each="role : ${roles}" 
+                                                            th:value="${role.id}" 
+                                                            th:text="${role.roleName}">
+                                                    </option> 
+                                                </select>
+                                            </div>
+                                        </div>
+                                         <div class="row form-group">
+                                             <div class="col-lg-6 col-md-6 col-sm-6" align="right"><h6> Password</h6></div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                 <input type="password" class="form-control" th:field="*{password}"  />
+                                            </div>
+                                        </div>
+                                        <br/>
+                                         <br/>
+                                         
+                                        <div class="row">
+                                            <div class="col-sm-6" align="right">
+                                                <input type="submit" value="Submit" class="btn btn-success" />
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <a th:href="@{/admin/users/}"   class="btn btn-success">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    
+                                </div> 
+                                
+                            </div> </div>
+    </section>
+    <div th:replace ="footer::footer"></div>
+    <script th:utext="${msg}"></script>
+</body>
+</html>

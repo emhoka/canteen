@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head lang="en" th:replace="head :: head"> </head>
+    <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+
+        <header th:replace ="topnavbar::topnavbar"></header>
+        <section th:replace ="butcherbottomnavbar::butcherbottomnavbar"></section>
+
+        <section id="home" class="slider" data-stellar-background-ratio="0.5">
+                <div class="row">
+                    <div id="msg"></div>
+                    <div class="container">
+                        <div class="row">                   
+                                    <label style="font-size: 2.2rem;">Add / Edit To Cart</label>
+                                
+                                        <div th:object="${transaction}">
+                                            <div class="row form-group">
+                                             <div class="col-lg-6 col-md-6 col-sm-6" align="right"><h6>Name</h6></div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                               <input readonly="readonly" type="text" class="form-control" th:field="*{stockRequest.inventory.stockgroup.name}"  />
+                                            </div>
+                                        </div>
+                                            
+                                            <div class="row form-group">
+                                             <div class="col-lg-6 col-md-6 col-sm-6" align="right"><h6>Name</h6></div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                               <input readonly="readonly" type="text" class="form-control" th:field="*{stockRequest.stockRequestQuantity}"  />
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <form th:action="@{/stocks/transactionform}" th:object="${transaction}" method="post"> 
+                                             <div class="row form-group">
+                                             <div class="col-lg-6 col-md-6 col-sm-6" align="right"><h6>Quantity Sold</h6></div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                              <input type="text" class="form-control" th:field="*{quantitySold}" id="a1"  />
+                                                <input type="hidden" class="form-control" th:field="*{id}"  />
+                                                <input type="hidden" class="form-control" th:field="*{stockRequest}" />
+                                            </div>
+                                        </div>
+                                            <div class="row form-group">
+                                             <div class="col-lg-6 col-md-6 col-sm-6" align="right"><h6>Payment Mode</h6></div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <select onblur="calculate()" id="a2" data-live-search="true" class="form-control"   data-style="btn-default" th:field="${transaction.paymentMode}" required = "required">
+                                                    <option value="">- - - - select - - - -</option> 
+                                                    <option th:each="paymentMode : ${paymentModes}" 
+                                                            th:value="${paymentMode.id}" 
+                                                            th:name="${paymentMode?.pricePerKg}" 
+                                                            th:text="${paymentMode?.name}">
+                                                    </option> 
+                                                </select>
+                                            </div>
+                                        </div>
+                                             <div class="row form-group">
+                                             <div class="col-lg-6 col-md-6 col-sm-6" align="right"><h6>Category</h6></div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                              <select data-live-search="true" class="form-control"   data-style="btn-default" th:field="${transaction.categories}" required = "required">
+                                                    <option value="">- - - - select - - - -</option> 
+                                                    <option th:each="categories : ${categoriess}" 
+                                                            th:value="${categories.id}"  
+                                                            th:text="${categories?.category}">
+                                                    </option> 
+                                                </select>
+                                            </div>
+                                        </div>
+                                            <div class="row form-group">
+                                             <div class="col-lg-6 col-md-6 col-sm-6" align="right"><h6>Price</h6></div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                               <input type="text" readonly="readonly" class="form-control"   th:field="*{price}" id="a3" />
+                                            </div>
+                                        </div>
+                                            <div class="row form-group">
+                                             <div class="col-lg-6 col-md-6 col-sm-6" align="right"><h6>Cashier</h6></div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6" th:with="login=${@user}">
+                                                <input type="text" readonly="readonly" class="form-control"  th:value="${login?.name} +' '+ ${login?.surname}" id="cashier" name="cashier"/> 
+                                            </div>
+                                        </div>
+                                            <br/>
+                                              <div class="row">
+                                            <div class="col-sm-6" align="right">
+                                                <input type="submit" value="Save" class="btn btn-success" />
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <a th:href="@{/stocks/stockrequests}"    class="btn btn-success">Cancel</a>
+                                            </div>
+                                        </div>
+                                        </form>
+                                    </div> 
+
+                                </div> </div>
+        </section>
+        <div th:replace ="footer::footer"></div>
+        <script th:utext="${msg}"></script>   
+        <script type="text/javascript">
+            calculate = function ()
+            {
+               var quantitySold = document.getElementById('a1').value;
+               var e = document.getElementById('a2');
+	       var pricePerKg = e.options[e.selectedIndex].getAttribute('name');
+                document.getElementById('a3').value = parseInt(quantitySold) * parseInt(pricePerKg);
+
+            }
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+  
+  <header th:fragment="topnavbar" class="hder">
+          <div class="container">
+               <div class="row" th:with="login=${@user}">
+
+                    <div class="col-md-4 col-sm-5">
+                        <p style ="color:#fff;">Welcome, <b th:text = "${login?.name} +' '+ ${login?.surname}"></b></p>
+                    </div>
+                         
+                    <div class="col-md-8 col-sm-7 text-align-right">
+                         <span class="date-icon"><i class="glyphicon glyphicon-user text-white"></i> User Role (<b th:text = "${login?.role?.roleName}"></b>)</span>
+<!--                         <span>//</span>-->
+<!--                         <span class="phone-icon"><i class="glyphicon glyphicon-earphone text-white"></i> Support (<b>+263 784 982 541</b>)</span>-->
+<!--                         <span class="email-icon"><i class="glyphicon glyphicon-envelope text-success"></i> <a href="#">eunymhoka@gmail.com</a></span>-->
+
+                    </div>
+    
+
+               </div>
+          </div>
+                     <div class="col-md-1 col-sm-1 text-align-right">
+<!--                       <li class="dropdown"><span href="#" class="smoothScroll dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-menu-hamburger text-white"></i></span>
+                        <div class="dropdown-menu" style="height:1000px; background-color: #3f5c80;width:500px">
+                            <div style=" padding: 13px 15px;z-index:1">
+                            <a th:href="@{/stocks/stockgroup}">Stock Group</a>
+                            <br/>
+                            <br/>
+                            <a th:href="@{/stocks/stockrequests}">Stock Request</a>
+                            <br/>
+                            <br/>
+                            <a th:href="@{/stocks/supplier}">Stock Supplier</a>
+                            <br/>
+                            <br/>
+                            <a th:href="@{/stocks/measurement}">Unit of Measure</a>
+                            <br/>
+                            <br/>
+                            <a th:href="@{/stocks/paymentmode}">Service Charge</a>
+                              <br/>
+                            <br/>
+                            <a th:href="@{/stocks/category}">Group Category</a>
+                              <br/>
+                            </div>
+                        </div></li>-->
+                        
+                   </div>
+     </header>

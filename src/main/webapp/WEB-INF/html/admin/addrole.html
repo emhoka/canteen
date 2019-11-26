@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head lang="en" th:replace="head :: head"> </head>
+    <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+
+        <header th:replace ="topnavbar::topnavbar"></header>
+        <section th:replace ="adminbottomnavbar::adminbottomnavbar"></section>
+
+        <section id="home" class="slider" data-stellar-background-ratio="0.5">
+            <div class="row">
+                <div id="msg"></div>
+                <div class="container">
+                    <div class="row">      
+                                    <label style="font-size: 2.2rem;">Add Role</label>
+                        
+                                  <form th:action="@{/admin/roleform}" th:object="${roles}" method="post" > 
+                                         <div class="row form-group">
+                                             <div class="col-lg-6 col-md-6 col-sm-6" align="right"><h6>Name</h6></div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                          <input type="text" class="form-control" th:field="*{roleName}"  />
+                                                <input type="hidden" class="form-control" th:field="*{id}"  />
+                                            </div>
+                                        </div>
+                                        <br/>
+                                         <br/>
+                                         
+                                        <div class="row">
+                                            <div class="col-sm-6" align="right">
+                                                <input type="submit" value="Submit" class="btn btn-success" />
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <a th:href="@{/admin/roles/}"   class="btn btn-success">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div> 
+                                
+                            </div> 
+            </div>
+    </section>
+    <div th:replace ="footer::footer"></div>
+    <script th:utext="${msg}"></script>
+</body>
+</html>

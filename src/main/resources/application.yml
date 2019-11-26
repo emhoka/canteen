@@ -1,0 +1,33 @@
+
+## YAML Template.
+--- 
+#spring:
+ #   application:
+  #      name: canteen     
+   # cloud:
+    #    config:
+     #       server:
+      #          bootstrap:  true
+          #      prefix: /config
+          #      git:
+           #         uri: http://gitsrvr/configs/hmsconfigs.git
+           #         basedir:    /data/${spring.application.name}/config-git
+            #        force-pull: true
+                    
+server.port: 1080
+spring.datasource.driver-class-name: com.mysql.jdbc.Driver
+spring.datasource.url: jdbc:mysql://localhost:3306/project?useSSL=false
+spring.datasource.username: root
+spring.datasource.password: 5p1tf1r3
+spring.jpa.properties.hibernate.id.new_generator_mappings :  false
+spring.jpa.properties.hibernate.show_sql :  false
+spring.jpa.properties.hibernate.format_sql :  true
+spring.jpa.hibernate.ddl-auto :  update
+logging.file: /data/canteen/log/canteen-web.log
+spring.http.multipart.max-file-size: 50MB
+
+
+
+
+
+                   

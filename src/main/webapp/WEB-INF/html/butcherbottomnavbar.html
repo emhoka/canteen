@@ -1,0 +1,64 @@
+<div th:fragment="butcherbottomnavbar"> 
+    <!-- MENU -->
+    <section class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container">
+
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                </button>
+
+                <!-- lOGO TEXT HERE -->
+                <a href="index.html" class="navbar-brand" ><i class="fa fa-h-square text-success"></i>ello !!!</a>
+            </div>
+
+            <!-- MENU LINKS -->
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a  th:href="@{'/stocks/butcherview'}"   class="smoothScroll">Home</a></li>
+                    <li><a th:href="@{'/stocks/inventory'}" class="smoothScroll">Inventory</a></li>
+                    <li class="dropdown"><a href="#" class="smoothScroll dropdown-toggle" data-toggle="dropdown">Stocks</a>
+                        <div class="dropdown-menu">
+                            <br/>
+                            <a th:href="@{/stocks/stockgroup}">Stock Group</a>
+                            <br/>
+                            <br/>
+                            <a th:href="@{/stocks/stockrequests}">Stock Request</a>
+                            <br/>
+                            <br/>
+                            <a th:href="@{/stocks/supplier}">Stock Supplier</a>
+                            <br/>
+                            <br/>
+                            <a th:href="@{/stocks/measurement}">Unit of Measure</a>
+                            <br/>
+                            <br/>
+                            <a th:href="@{/stocks/paymentmode}">Service Charge</a>
+                              <br/>
+                            <br/>
+                            <a th:href="@{/stocks/category}">Group Category</a>
+                              <br/>
+                            <br/>
+                        </div>
+                    </li>
+                    <li><a th:href="@{'/stocks/checkoutcart'}" class="smoothScroll">Checkout</a></li>
+                    <li><a th:href="@{'/stocks/transaction'}" class="smoothScroll">Transaction</a></li>
+                      <li class="dropdown"><a href="#" class="smoothScroll dropdown-toggle" data-toggle="dropdown">Generate Report</a>
+                        <div class="dropdown-menu">
+                            <br/>
+                            <a href="#">Transactions</a>
+                            <br/>
+                            <br/>
+                            <a href="#">Inventory</a>
+                            <br/>
+                            <br/>
+                        </div>
+                    </li>
+                    <li class="appointment-btn"><a href="/logout" class="smoothScroll"><i class="glyphicon glyphicon-log-out text-glyphicon"></i> Logout</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </section>              
+</div>

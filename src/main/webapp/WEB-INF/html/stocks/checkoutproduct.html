@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head lang="en" th:replace="head :: head"> </head>
+    <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+        <header th:replace ="topnavbar::topnavbar"></header>
+        <section th:replace ="butcherbottomnavbar::butcherbottomnavbar"></section>
+
+        <section id="home" class="slider" data-stellar-background-ratio="0.5">
+            <div class="row" >
+                <div class="container">
+                    <div class="row">
+                         <form> 
+                            <div id="msg"></div>
+                        </form>
+                                    <label style="font-size: 2.2rem;">Product</label>
+                            <div class="panel panel-default outer">
+                                <div class="panel-heading headerbar">
+                                    <h3 class="text-center"></h3>
+                                </div>
+                                <div class="panel-body text-justify">
+                                    <div class="table-responsive pt-3">
+                                        <table class="table">
+                                            <thead >
+                                                <tr>
+                                                    <th>
+                                                        Product
+                                                    </th>
+                                                    <th>
+                                                        Quantity
+                                                    </th>
+                                                    <th>
+                                                        Price
+                                                    </th>
+                                                    <th>
+                                                        Supplier
+                                                    </th>
+                                                    <th>
+                                                        Creation Date
+                                                    </th>
+                                                    <th>
+                                                        Add To Cart
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr data-th-each="stocktakes : ${stocktakess}">
+                                                    <td data-th-text="${stocktakes.inventory?.stockgroup?.name}">...</td>
+                                                    <td data-th-text="${stocktakes.stockTakeQuantity} +' '+ ${stocktakes?.inventory?.measurement?.measurementName}">...</td>
+                                                    <td>...</td>
+                                                    <td data-th-text="${stocktakes.inventory?.supplier?.name}">...</td>
+                                                    <td data-th-text="${stocktakes.creationTime}">...</td>
+                                                    <td><a> <span class="glyphicon glyphicon-plus text-glyphicon" data-toggle="modal" data-target="#addUserForm" style="margin-left:27px;" title="add to cart"></span></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div> </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </section>
+    <transition name="fade">
+        <div class="modal fade" id ="addUserForm" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog" role="document">
+                <div class ="modal-content">
+                    <div class="card-body">
+                        <h4 class="modalheader text-dark">Add To Cart</h4>
+                        <br/>
+                        <form method="post"> 
+                            <div align="right">
+                                <button  type="submit"  class="btn btn-success">Save</button>
+                                <button  data-dismiss="modal" type="button" class="btn btn-success">Cancel</button>
+                            </div>
+                            <div class="form-group">
+                                <h6>Name</h6>
+                                <input type="text" class="form-control"  placeholder="name" />
+                                <input type="hidden" class="form-control"  />
+                            </div>
+                            <div class="form-group">
+                                <h6>Surname</h6>
+                                <input type="text" class="form-control"  placeholder="surname" />
+                            </div>
+                            <div class="form-group">
+                                <h6>Username</h6>
+                                <input type="text" class="form-control"  placeholder="Username" />
+                            </div>
+                            <div class="form-group">
+                                <h6>Phone</h6>
+                                <input type="text" class="form-control" placeholder="phone" />
+                            </div>
+                            <div class="form-group">
+                                <h6>Role</h6>
+                                <select  data-live-search="true" class="form-control"   data-style="btn-default" required = "required">
+                                    <option value="">- - - - select - - - -</option> 
+                                    <option>
+                                    </option> 
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <h6>Password</h6>
+                                <input type="password" class="form-control" placeholder="password" />
+                            </div>
+                            <div class="form-group">
+                                <h6>Confirm Password</h6>
+                                <input type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password" />
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </transition>
+    <div th:replace ="footer::footer"></div>
+    <style>
+        .modal-dialog {
+            max-width: 90%;
+            /*                margin: 50;*/
+
+            overflow: auto;
+            height: 700px;
+            word-wrap: break-word;
+            background-clip: border-box;
+            border-radius: 6px;
+            border:none;
+            background-color: #fff;
+        }
+        .modal{
+            padding-top: 120px;
+        }
+        .modal-content{
+
+            padding: 30px;
+            border:none;
+        }
+
+        .modalheader {
+            font-size: 24px;
+            font-weight: bold;
+            font-family:arial;
+        }
+    </style>
+    <script th:utext="${msg}"></script>
+</body>
+</html>

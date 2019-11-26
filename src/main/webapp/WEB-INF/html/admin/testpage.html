@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head lang="en" th:replace="head :: head"> </head>
+    <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+        <section class="preloader">
+            <div class="spinner">
+
+                <span class="spinner-rotate"></span>
+
+            </div>
+        </section>
+
+        <header th:replace ="topnavbar::topnavbar"></header>
+        <section th:replace ="adminbottomnavbar::adminbottomnavbar"></section>
+        <section id="home" data-stellar-background-ratio="0.5">
+            <div id="mytest">
+            <input type="button" class="btn btn-primary" value="first" v-on:click="testPage1()"/>
+            <input type="button" class="btn btn-primary" value="second" v-on:click="testPage2()"/>
+            
+            
+        <div th:replace ="admin/testpage1"></div>
+        <div th:replace ="admin/testpage2"></div>
+            </div>
+        </section>
+        <div th:replace ="footer::footer"></div>
+        <script th:utext="${msg}"></script>
+        <script type="text/javascript">
+            var editorMaster = null;
+                    function _(el) {
+                        return document.getElementById(el);
+                    }
+            
+            var mytest = new Vue({
+                el: '#mytest',
+                data: {
+                    axios,
+                    testpage2Modal: false,
+                    testpage1Modal: false
+                },
+                methods: {
+                    testPage1() {
+                        document.getElementById("testpage1Modal").style.visibility = "visible";
+                    },
+
+                    testPage2() {
+                        document.getElementById("testpage2Modal").style.visibility = "visible";
+                    }
+
+                }
+
+            })
+        </script>
+    </body>
+</html>

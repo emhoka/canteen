@@ -1,0 +1,46 @@
+<div name="fade" th:fragment="addtocart">
+    <div class="modal fade" id ="addUserForm" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog" role="document">
+            <div class ="modal-content">
+                <div class="card-body">
+                    <h4 class="modalheader text-dark">Add To Cart</h4>
+                    <br/>
+                    <div th:object="${transaction}">
+                        <div class="form-group">
+                            <h6>Name</h6>
+                            <input type="text"  readonly="readonly" class="form-control" th:field="*{stockRequest.inventory.stockgroup.name}" />
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <h6>Request Quantity</h6>
+                            <input type="text"  readonly="readonly" class="form-control" th:field="*{stockRequest.stockRequestQuantity}"  />
+                        </div>
+                    </div>
+                    <br/>
+                    <form th:action="@{/stocks/transactionform}" th:object="${transaction}" method="post"> 
+                        <div class="form-group">
+                            <h6>Quantity Sold</h6>
+                            <input type="text" class="form-control" th:field="*{quantitySold}" />
+                            <input type="hidden" class="form-control" th:field="*{id}"  />
+                            <input type="hidden" class="form-control" th:field="*{stockRequest}" />
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <h6>Price</h6>
+                            <input type="text" class="form-control" th:field="*{price}" />
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <h6>Payment Mode</h6>
+                        </div>
+                        <br/>
+                        <div align="right">
+                            <button  type="submit"  class="btn btn-success">Save</button>
+                            <button  data-dismiss="modal" type="button" class="btn btn-success">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

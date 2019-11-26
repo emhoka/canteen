@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head lang="en" th:replace="head :: head"> </head>
+    <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+        <header th:replace ="topnavbar::topnavbar"></header>
+        <section th:replace ="butcherbottomnavbar::butcherbottomnavbar"></section>
+        <section id="home" class="slider" data-stellar-background-ratio="0.5">
+            <br/>
+            <div class="row" >
+                <div id="msg"></div>
+                <div class="container">
+                    <div class="row" >
+                        <label style="font-size: 2.2rem;">Unit Of Measure</label>
+                        <div class="form-inline">
+                            <div class="row">
+                                  <div class="space">
+                                <button class="btn btn-pumpkin" title="Add New">
+                                    <a th:href="@{/stocks/addmeasurement}">  <span class="glyphicon glyphicon-plus text-glyphicon">
+                                        </span> <h7>Add New</h7></a>
+                                </button>
+                                  </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3" align="left">
+                                    <span class="add-on"><h7>Search:</h7></span>
+                                    <input class="form-control" id="system-search" name="q" placeholder="Search for"/>
+                                    <span class="glyphicon glyphicon-search text-glyphicon"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="table-responsive">
+                            <table class="table center-aligned-table">
+                                            <thead >
+                                                <tr>
+                                                    <th>
+                                                        Action
+                                                    </th>
+                                                    <th>
+                                                        Name
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr data-th-each="measurements : ${measurementss}">
+                                                    <td> 
+                                                        <a th:href="@{'/stocks/editmeasurement/' + ${measurements.id}}" > <span class="glyphicon glyphicon-edit text-glyphicon" title="edit"></span></a>  
+                                                        <a th:href="@{'/stocks/deletemeasurement/' + ${measurements.id}}"> <span class="glyphicon glyphicon-remove text-red" title="delete"></span></a>
+                                                    </td>
+                                                    <td data-th-text="${measurements.measurementName}">...</td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                        </div>
+
+                    </div> </div>
+            </div> 
+        </section>
+        <div th:replace ="footer::footer"></div>
+        <script th:utext="${msg}"></script>
+    </body>
+</html>

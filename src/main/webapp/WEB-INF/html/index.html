@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head lang="en" th:replace="head :: head"> </head>
+    <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+        <section class="preloader">
+            <div class="spinner">
+
+                <span class="spinner-rotate"></span>
+
+            </div>
+        </section>
+<!--         <header th:replace ="indextopnavbar::indextopnavbar"></header>-->
+        <section th:replace ="indexheader::indexheader"></section>
+
+       
+             <div class="loginwrap">
+        <section id="about" class="hder">
+                    <div id="msg"></div>
+                    <div class="container">
+                <div class="row">
+                    <div class = "col-md-6 col-md-offset-1" >
+                                   <div class="caption">
+                                       <div class="col-md-offset-1 col-md-10"  style="padding-top: 70px;">
+                                            <div class="container textContainer">
+                                             <h1 class="wow fadeInUp" data-wow-delay="0.3s" >Welcome to the Butchery Store,</h1>
+                                             <br/>
+                                             <h1 class="wow fadeInUp" data-wow-delay="0.6s" style ="font-size: 2rem;font-weight: 400;">Quality is our recipe</h1>
+                                              <br/>
+                                              <a href="#team" class="section-btn btn btn-default smoothScroll">explore</a>
+                                            </div>
+                                        </div>
+                                   </div>
+                    </div>
+                    <div class="col-md-4">
+                    <div class="login-wrap">
+                        <div class="login-html">
+                            <div class="login-form">
+                                <form  action="#" th:action="@{/login}" th:object="${user}" method="post">
+                                    <div class="sign-in-htm">
+                                        <div class="group">
+                                            <label for="user" class="label">Username</label>
+                                            <input th:field="*{username}"  type="text" class="input" />
+                                        </div>
+                                        <br/>
+                                        <div class="group">
+                                            <label for="pass" class="label">Password</label>
+                                            <input th:field="*{password}" type="password" class="input" data-type="password" />
+                                        </div>
+                                        <br/>
+                                        <div class="group">
+                                            <input type="submit" class="button" value="Login" />
+                                        </div>
+                                        <div class="foot-lnk">
+                                            <a href="#forgot"></a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    </div>  
+                </div> 
+                    </div>
+        </section>
+        </div> 
+         <div th:replace ="footer::footer"></div>
+        <script th:utext="${msg}"></script>
+        <script th:if="${param.error}">
+            setError('Your login credentials are not correct. Please try again!!')
+        </script>
+    </body>
+</html>

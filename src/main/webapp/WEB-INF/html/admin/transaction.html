@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head lang="en" th:replace="head :: head"> </head>
+    <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+        <header th:replace ="topnavbar::topnavbar"></header>
+       <section th:replace ="adminbottomnavbar::adminbottomnavbar"></section>
+        <section id="home" class="slider" data-stellar-background-ratio="0.5">
+            <br/>
+            <div class="row" >
+                <div id="msg"></div>
+                <div class="container">
+                    <div class="row" >
+                        <label style="font-size: 2.2rem;">Transaction Details</label>
+                      <div class="form-inline">
+                            <div class="row" >
+<!--                                    <span class="add-on"><h7>From:</h7></span>
+                                    <input type="text" class="form-control"/>
+                                    <span class="add-on"><h7>To:</h7></span>
+                                    <input type="text" class="form-control"/>-->
+                                <div class="col-lg-3 col-md-3 col-sm-3" align="left">
+                                    <span class="add-on"><h7>Search:</h7></span>
+                                    <input type="text" class="form-control" id="system-search" name="q" placeholder="Search for"/>
+                                    <span class="glyphicon glyphicon-search text-glyphicon"></span>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="table-responsive">
+                             <table class="table center-aligned-table">
+                                <thead >
+
+                                    <tr>
+                                        <th>
+                                            Product Name
+                                        </th>
+                                        <th>
+                                            Category
+                                        </th>
+                                        <th>
+                                            Quantity Sold
+                                        </th>
+                                        <th>
+                                            Price
+                                        </th>
+
+                                        <th>
+                                            Payment Mode
+                                        </th>
+                                        <th>
+                                            Cashier
+                                        </th>
+                                        <th>
+                                            Supplier
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-th-each="transactions : ${transactionss}">
+                                        <td data-th-text="${transactions?.stockRequest.inventory?.stockgroup?.name}">...</td>
+                                        <td data-th-text="${transactions.categories?.category}">...</td>
+                                        <td data-th-text="${transactions.quantitySold}+' '+ ${transactions?.stockRequest?.inventory?.measurement?.measurementName}">...</td>
+                                        <td data-th-text="${transactions.price}+' '+ ${transactions?.paymentMode?.currencySymbol}">...</td>
+                                        <td data-th-text="${transactions.paymentMode?.name}">...</td>
+                                        <td data-th-text="${transactions.cashier}">...</td>
+                                        <td data-th-text="${transactions.stockRequest.inventory?.supplier?.name}">...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div> </div>
+            </div> 
+        </section>
+        <div th:replace ="footer::footer"></div>
+        <script th:utext="${msg}"></script>
+    </body>
+</html>

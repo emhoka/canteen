@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <title >INVENTORY</title>
+        <meta name="generator" content="LibreOffice 6.0.6.2 (Linux)"/>
+        <meta name="created" content="2018-11-12T10:58:21.591478756"/>
+        <meta name="changed" content="2018-11-12T11:03:29.337925224"/>
+        <style type="text/css">
+            @page { margin: 50px; }
+            body{ font-size: 12px; }
+            th, td {
+                border-width: 1px; border-color: #CCC; border-style: solid
+            }
+            th { background-color: aliceblue;}
+            h4 , h3 { text-transform: uppercase }
+            table{ padding-top: 7px; }
+        </style>
+    </head>
+    <body>
+        <table class="table center-aligned-table ">
+            <thead >
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Quantity
+                    </th>
+                    <th>
+                        Purchase Price 
+                    </th>
+                    <th>
+                        Supplier
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-th-each="inventorys : ${inventoryss}">
+                    <td data-th-text="${inventorys.stockgroup?.name}">...</td>
+                    <td data-th-text="${inventorys.quantity} +' '+ ${inventorys.measurement?.measurementName}">...</td>
+                    <td data-th-text="${inventorys.originalPrice}">...</td>
+                    <td data-th-text="${inventorys.supplier?.name}">...</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

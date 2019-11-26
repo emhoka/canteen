@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head lang="en" th:replace="head :: head"> </head>
+    <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+        <header th:replace ="topnavbar::topnavbar"></header>
+        <section th:replace ="butcherbottomnavbar::butcherbottomnavbar"></section>
+
+         <section id="home" class="slider" data-stellar-background-ratio="0.5">
+            <div class="row" style ="padding-top:30px;">
+                <div id="msg"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4" >
+                                    <label class="wow fadeInUp" data-wow-delay="0.6s" style="font-size: 2.2rem;">Stocks</label>
+                            <div class="panel panel-default outer">
+                                <div class="panel-heading headerbar">
+                                    <h3 class="text-center"></h3>
+                                </div>
+                                <div class="panel-body text-justify">
+                                    <div class="table-responsive pt-3">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td><a th:href="@{/stocks/stockgroup}">Stock Group</a></td>
+                                    </tr>
+                                    <tr>
+                                    <td><a th:href="@{/stocks/stockrequests}">Stock Request</a></td>
+                                    </tr>
+                                    <tr>
+                                    <td><a th:href="@{/stocks/supplier}">Stock Supplier</a></td>
+                                    </tr>
+                                    <tr>
+                                    <td><a th:href="@{/stocks/measurement}">Stock Measurement</a></td>
+                                </tr>
+                            </tbody>   
+                                            </table>
+                    </div>
+                            </div> </div>
+                            </div> 
+                    </div>
+                </div>
+            </div>
+    </section>
+    <div th:replace ="footer::footer"></div>
+    <script th:utext="${msg}"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head lang="en" th:replace="head :: head"> </head>
+    <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+        <header th:replace ="topnavbar::topnavbar"></header>
+        <section th:replace ="butcherbottomnavbar::butcherbottomnavbar"></section>
+        <section id="home" class="slider" data-stellar-background-ratio="0.5">
+            <br/>
+            <div class="row" >
+                <div id="msg"></div>
+                <div class="container">
+                    <div class="row" >
+                        <label style="font-size: 2.2rem;">Stock Requests</label>
+                        <div class="form-inline">
+                            <div class="row" >
+<!--                                    <span class="add-on"><h7>From:</h7></span>
+                                    <input type="text" class="form-control"/>
+                                    <span class="add-on"><h7>To:</h7></span>
+                                    <input type="text" class="form-control"/>-->
+                                <div class="col-lg-3 col-md-3 col-sm-3" align="left">
+                                    <span class="add-on"><h7>Search:</h7></span>
+                                    <input type="text" class="form-control" id="system-search" name="q" placeholder="Search for"/>
+                                    <span class="glyphicon glyphicon-search text-glyphicon"></span>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="table-responsive">
+                       <table class="table center-aligned-table">
+                                <thead >
+                                    <tr> 
+                                        <th>
+                                            Action
+                                        </th>
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Quantity
+                                        </th>
+
+                                        <th>
+                                            Supplier
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-th-each="stockRequests : ${stockRequestss}">
+
+                                        <td><a th:href="@{'/stocks/editstockrequests/' + ${stockRequests.id}}" > <span class="glyphicon glyphicon-edit text-glyphicon" title="edit"></span></a>
+                                            <a th:href="@{'/stocks/addtocart/' + ${stockRequests.id}}"> <span class="glyphicon glyphicon-random text-glyphicon" title="add to cart"></span></a>
+                                            <a th:href="@{'/stocks/deletestockrequests/' + ${stockRequests.id}}"> <span class="glyphicon glyphicon-remove text-red" title="delete"></span></a>
+                                        </td>
+                                        <td data-th-text="${stockRequests.inventory?.stockgroup?.name}">...</td>
+                                        <td data-th-text="${stockRequests.stockRequestQuantity} +' '+ ${stockRequests?.inventory?.measurement?.measurementName}">...</td>
+                                        <td data-th-text="${stockRequests.inventory?.supplier?.name}">...</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div> </div>
+            </div> 
+        </section>
+        <div th:replace ="footer::footer"></div>
+        <script th:utext="${msg}"></script>
+    </body>
+</html>
